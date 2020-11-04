@@ -1,19 +1,18 @@
 <template>
+
   <div class="home">
     <!-- indexSongs -->
-    <h1>All Songs:</h1>
-    <div v-for="song in songs">
+    <h1>All Songs</h1>
+    <div v-for="song in songs" class="all-songs">
       <h2>{{song.title}}</h2>
       <h3>By: {{song.user_id}}</h3>
       <h4>Audio: {{song.audio}}</h4>
       <p>Lyrics: {{song.lyrics}}</p>
       <button v-on:click="showSong(song)">Listen</button>
-      <br>
-      <br>
-      <br>
     </div>
 
 <!-- showSong -->
+      
       <dialog id="song-details">
       <form method="dialog">
         <h2>Song info:</h2>
@@ -29,6 +28,45 @@
 </template>
 
 <style>
+header {
+  background: white;
+}
+
+body {
+  background-color: rgb(252, 191, 78);
+}
+.all-songs {
+  padding: 30px;
+  background: white;
+  border-radius: 20px;
+  width: 20%;
+  margin: 0 auto;
+  margin: 20px auto;
+}
+
+.all-songs:hover {
+  background-color: cornsilk;
+}
+
+#song-details {
+  color: rgb(0, 0, 0);
+  border: solid rgb(231, 209, 137) 2px;
+  border-radius: 20px;
+}
+
+button {
+  border-radius: 20px;
+  font-size: 16px;
+  border: solid rgb(252, 191, 78) 1px;
+  background-color: white;
+  color: black;
+}
+
+button:hover {
+  background-color: aliceblue;
+  cursor: pointer;
+  font-size: 20px;
+}
 </style>
 
 <script>

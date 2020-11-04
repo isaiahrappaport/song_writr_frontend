@@ -1,5 +1,7 @@
 <template>
   <div class="logout">
+    <h1>Successfully logged out!</h1>
+    <a href="/">Go Home</a>
   </div>
 </template>
 

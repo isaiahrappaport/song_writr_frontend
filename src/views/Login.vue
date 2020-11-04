@@ -18,6 +18,25 @@
   </div>
 </template>
 
+<style>
+.form-control {
+  width: 30%;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  background-position: 10px 10px;
+  padding: 1px 20px 12px 40px;
+  transition: width 0.7s ease-in-out;
+  margin: 20px;
+}
+
+.form-control:focus {
+  width: 50%;
+}
+</style>
+
 <script>
 import axios from "axios";
 

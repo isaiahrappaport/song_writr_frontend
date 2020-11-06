@@ -2,12 +2,15 @@
 
   <div class="home">
     <!-- indexSongs -->
-    <br>
+    
+    <h1>Welcome, {{currentUser.username}}!</h1>
+    <a class="new-song" href="/newsong">New Song</a>
     <h1>All Songs</h1>
-    <!-- HOW DO I GET PROFILE PICTURE WITH ONLY LOOP BEING SONG IN SONGS -->
-    <div v-for="song in songs" class="all-songs">
+    <div v-for="song in currentUser.songs" class="all-songs">
+      <!-- show all user songs -->
       <h2>{{song.title}}</h2>
       <h3>By: {{song.user_id}}</h3>
+      <h5>Created at:{{song.created_at}}</h5>
       <button v-on:click="showSong(song)">Listen</button>
     </div>
 
@@ -17,13 +20,14 @@
       <form method="dialog">
         <h2>Song info:</h2>
         <h3>{{ currentSong.title }}</h3>
-        <audio controls>
+        <!-- PLAYING AUDIO NOT WORKING -->
+         <audio controls>
   <source v-bind:src="currentSong.audio_file" type="audio/ogg">
   <source v-bind:src="currentSong.audio_file" type="audio/mpeg">
 Your browser does not support the audio element.
 </audio>
         <p> {{ currentSong.lyrics }}</p>
-        <p> Suggestions: {{ currentSong.suggestions }}</p>
+        <p> {{ currentSong.suggestions }}</p>
         <button>Close</button>
       </form>
     </dialog>
@@ -31,7 +35,21 @@ Your browser does not support the audio element.
   </div>
 </template>
 
-<style>
+<style scoped>
+.new-song {
+  background-color: aliceblue;
+  border: solid black 2px;
+  border-radius: 20px;
+  text-decoration: none;
+  color: black;
+  font-size: 16px;
+  padding: 6px;
+}
+
+.new-song:hover {
+  background-color: rgb(219, 215, 215);
+}
+
 header {
   background: white;
 }
@@ -81,19 +99,18 @@ export default {
     return {
       songs: [],
       currentSong: {},
-      users: [],
+      currentUser: [],
     };
   },
   created: function () {
-    this.indexSongs();
-    this.indexUsers();
+    this.userSongs();
   },
   methods: {
-    // indexSongs
-    indexSongs: function () {
-      axios.get("/api/songs").then((response) => {
-        console.log("All songs:", response.data);
-        this.songs = response.data;
+    // currentUser
+    userSongs: function () {
+      axios.get("/api/users/current").then((response) => {
+        console.log("current user:", response.data);
+        this.currentUser = response.data;
       });
     },
     // showSong
@@ -101,14 +118,6 @@ export default {
       console.log("Show song:", song);
       this.currentSong = song;
       document.querySelector("#song-details").showModal();
-    },
-
-    // indexUsers
-    indexUsers: function () {
-      axios.get("/api/users").then((response) => {
-        console.log("All users:", response.data);
-        this.users = response.data;
-      });
     },
   },
 };

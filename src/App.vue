@@ -6,6 +6,7 @@
       <router-link to="/signup">Signup</router-link>
       <router-link to="/login">Login</router-link>
       <router-link to="/logout">Logout</router-link>
+      <router-link to="/mysongs">My Songs</router-link>
     </div>
     <!-- header -->
     <header>
@@ -38,11 +39,11 @@
 }
 
 #nav a:hover {
-  color: rgb(255, 255, 255);
+  color: aliceblue;
   font-size: 20px;
 }
 
 #nav a.router-link-exact-active {
-  color: #ffffff;
+  color: aliceblue;
 }
 </style>

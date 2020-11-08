@@ -1,49 +1,30 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> 
-      
-      <router-link to="/signup">Signup</router-link>
-      <router-link to="/login">Login</router-link>
-      <router-link to="/logout">Logout</router-link>
-      <router-link to="/mysongs">My Songs</router-link>
-    </div>
-    <!-- header -->
-    <header>
-     <h3> Song_writr </h3>
-    </header>
+    	<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Song_writr</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li class="active"><a href="/">Home</a></li>
+							<li><a href="/mysongs">My Music</a></li>
+							<li><a href="/login">Login</a></li>
+							<li><a href="/signup">Signup</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
     <router-view/>
     
   </div>
 </template>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #000000;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #000000;
-  padding: 30px;
-  padding-bottom: 0%;
-  text-decoration: none;
-}
-
-#nav a:hover {
-  color: aliceblue;
-  font-size: 20px;
-}
-
-#nav a.router-link-exact-active {
-  color: aliceblue;
-}
 </style>

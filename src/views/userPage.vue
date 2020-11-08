@@ -2,17 +2,25 @@
 
   <div class="home">
     <!-- indexSongs -->
+    <div id="main">
     
     <h1>Welcome, {{currentUser.username}}!</h1>
+    <audio controls v-if="currentUser.songs">
+      <source v-bind:src="currentUser.songs[currentUser.songs.length - 1].audio_file">
+      Your browser does not support the audio element.
+    </audio>
     <a class="new-song" href="/newsong">New Song</a>
     <h1>All Songs</h1>
-    <div v-for="song in currentUser.songs" class="all-songs">
       <!-- show all user songs -->
+      <section class="posts">
+    <article v-for="song in currentUser.songs" class="all-songs">
       <h2>{{song.title}}</h2>
       <h3>By: {{song.user_id}}</h3>
       <h5>Created at:{{song.created_at}}</h5>
       <button v-on:click="showSong(song)">Listen</button>
-    </div>
+    </article>
+      </section>
+    
 
 <!-- showSong -->
       
@@ -22,10 +30,9 @@
         <h3>{{ currentSong.title }}</h3>
         <!-- PLAYING AUDIO NOT WORKING -->
          <audio controls>
-  <source v-bind:src="currentSong.audio_file" type="audio/ogg">
-  <source v-bind:src="currentSong.audio_file" type="audio/mpeg">
-Your browser does not support the audio element.
-</audio>
+          <source v-bind:src="currentSong.audio_file">
+          Your browser does not support the audio element.
+        </audio>
         <p> {{ currentSong.lyrics }}</p>
         <p> {{ currentSong.suggestions }}</p>
         <button>Close</button>
@@ -33,62 +40,10 @@ Your browser does not support the audio element.
     </dialog>
 
   </div>
+  </div>
 </template>
 
 <style scoped>
-.new-song {
-  background-color: aliceblue;
-  border: solid black 2px;
-  border-radius: 20px;
-  text-decoration: none;
-  color: black;
-  font-size: 16px;
-  padding: 6px;
-}
-
-.new-song:hover {
-  background-color: rgb(219, 215, 215);
-}
-
-header {
-  background: white;
-}
-
-body {
-  background-color: rgb(252, 191, 78);
-}
-.all-songs {
-  padding: 30px;
-  background: white;
-  border-radius: 20px;
-  width: 20%;
-  margin: 0 auto;
-  margin: 20px auto;
-}
-
-.all-songs:hover {
-  background-color: cornsilk;
-}
-
-#song-details {
-  color: rgb(0, 0, 0);
-  border: solid rgb(231, 209, 137) 2px;
-  border-radius: 20px;
-}
-
-button {
-  border-radius: 20px;
-  font-size: 16px;
-  border: solid rgb(252, 191, 78) 1px;
-  background-color: white;
-  color: black;
-}
-
-button:hover {
-  background-color: aliceblue;
-  cursor: pointer;
-  font-size: 20px;
-}
 </style>
 
 <script>
@@ -99,7 +54,7 @@ export default {
     return {
       songs: [],
       currentSong: {},
-      currentUser: [],
+      currentUser: {},
     };
   },
   created: function () {

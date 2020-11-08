@@ -1,33 +1,19 @@
 <template>
 
   <div class="home">
-   <!-- Main -->
-					<div id="main">
+    <!-- indexSongs -->
+    <br>
+    <h1>All Songs</h1>
+    <!-- HOW DO I GET PROFILE PICTURE WITH ONLY LOOP BEING SONG IN SONGS -->
+    <div v-for="song in songs" class="all-songs">
+      <!-- <img v-bind:src="User.find_by(id: song.user_id).profile_picture" v-bind:alt="User.find_by(id: song.user_id).username"> -->
+      <h2>{{song.title}}</h2>
+      <h3>By: {{song.user_id}}</h3>
+      <button v-on:click="showSong(song)">Listen</button>
+    </div>
 
-						<!-- Featured Post -->
-							<article class="post featured">
-								<header class="major">
-									
-									<h2><a href="#">Where great song_writrs<br />
-									write songs</a></h2>
-									<p>Upload melody, write lyrics, make music.</p>
-								</header>
-								<a href="#" class="image main"><img src="images/pic01.jpg" alt="" /></a>
-								<ul class="actions special">
-									<li><a href="#" class="button large">Write a song</a></li>
-								</ul>
-							</article>
-
-						<!-- all songs -->
-							<section class="posts">
-								<article v-for="song in songs">
-                  <h2>{{song.title}}</h2>
-                  <h3>By: {{song.user_id}}</h3>
-                  <p>{{song.lyrics}}</p>
-                  <button v-on:click="showSong(song)">Listen</button>
-								</article>
-							</section>
-<!-- show song -->
+<!-- showSong -->
+      
       <dialog id="song-details">
       <form method="dialog">
         <h2>Song info:</h2>
@@ -37,24 +23,55 @@
   <source v-bind:src="currentSong.audio_file" type="audio/mpeg">
 Your browser does not support the audio element.
 </audio>
-  <p> {{ currentSong.lyrics }}</p>
-  <p> Suggestions: {{ currentSong.suggestions }}</p>
-  <button>Close</button>
-  </form>
-  </dialog>
-									
-										
-									
-									
-								
-
-
-					</div>
+        <p> {{ currentSong.lyrics }}</p>
+        <p> Suggestions: {{ currentSong.suggestions }}</p>
+        <button>Close</button>
+      </form>
+    </dialog>
 
   </div>
 </template>
 
 <style>
+header {
+  background: white;
+}
+
+body {
+  background-color: rgb(252, 191, 78);
+}
+.all-songs {
+  padding: 30px;
+  background: white;
+  border-radius: 20px;
+  width: 20%;
+  margin: 0 auto;
+  margin: 20px auto;
+}
+
+.all-songs:hover {
+  background-color: cornsilk;
+}
+
+#song-details {
+  color: rgb(0, 0, 0);
+  border: solid rgb(231, 209, 137) 2px;
+  border-radius: 20px;
+}
+
+button {
+  border-radius: 20px;
+  font-size: 16px;
+  border: solid rgb(252, 191, 78) 1px;
+  background-color: white;
+  color: black;
+}
+
+button:hover {
+  background-color: aliceblue;
+  cursor: pointer;
+  font-size: 20px;
+}
 </style>
 
 <script>

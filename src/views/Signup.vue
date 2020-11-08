@@ -30,6 +30,21 @@
   </div>
 </template>
 
+<style scoped>
+h1 {
+  text-align: center;
+}
+.signup {
+  margin-top: 10em;
+  padding-left: 20em;
+  padding-right: 20em;
+  background-color: white;
+  padding-bottom: 2em;
+  opacity: 0.75;
+  border-radius: 250px;
+}
+</style>
+
 <script>
 import axios from "axios";
 

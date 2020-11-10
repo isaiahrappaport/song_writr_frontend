@@ -1,6 +1,8 @@
 <template>
 
   <div class="home">
+
+			
    <!-- Main -->
 					<div id="main">
 
@@ -8,13 +10,14 @@
 							<article class="post featured">
 								<header class="major">
 									
-									<h2><a href="#">Where great song_writrs<br />
+									<h2><a href="#">Where great songwriters<br />
 									write songs</a></h2>
-									<p>Upload melody, write lyrics, make music.</p>
+									<p>Upload audio, write lyrics, make music.</p>
 								</header>
-								<a href="#" class="image main"><img src="images/pic01.jpg" alt="" /></a>
+                <h2 class="tip">Today, <br> close your eyes while you sing.</h2>
+								<a href="/newsong" class="image main"><img src="images/home.png" alt="" /></a>
 								<ul class="actions special">
-									<li><a href="#" class="button large">Write a song</a></li>
+									<li><a href="/newsong" class="button large">Write a song</a></li>
 								</ul>
 							</article>
 
@@ -32,16 +35,20 @@
       <form method="dialog">
         <h2>Song info:</h2>
         <h3>{{ currentSong.title }}</h3>
-        <audio controls>
-  <source v-bind:src="currentSong.audio_file" type="audio/ogg">
-  <source v-bind:src="currentSong.audio_file" type="audio/mpeg">
+        <p>{{currentSong.audio}}</p>
+        <audio controls ref="audio">
+  <source v-bind:src="currentSong.audio" type="audio/ogg">
+  <source v-bind:src="currentSong.audio" type="audio/mpeg">
 Your browser does not support the audio element.
 </audio>
   <p> {{ currentSong.lyrics }}</p>
   <p> Suggestions: {{ currentSong.suggestions }}</p>
-  <button>Close</button>
+  <button class="close">Close</button>
   </form>
   </dialog>
+</div>
+</div>
+</template>
 									
 										
 									
@@ -49,12 +56,23 @@ Your browser does not support the audio element.
 								
 
 
-					</div>
-
-  </div>
-</template>
 
 <style>
+#song-details {
+  border-radius: 20px;
+  max-width: 50%;
+}
+.close {
+  margin-left: 9em;
+}
+
+.tip {
+  position: absolute;
+  top: 13%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-right: 250px;
+}
 </style>
 
 <script>
@@ -86,6 +104,9 @@ export default {
       console.log("Show song:", song);
       this.currentSong = song;
       document.querySelector("#song-details").showModal();
+      this.$nextTick(() => {
+        this.$refs.audio.load();
+      });
     },
 
     // indexUsers

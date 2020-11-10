@@ -34,14 +34,46 @@
 h1 {
   text-align: center;
 }
+
+.form-group {
+  text-align: center;
+}
+
 .signup {
-  margin-top: 10em;
+  margin-left: 4.9em;
+  margin-right: 4.9em;
   padding-left: 20em;
   padding-right: 20em;
   background-color: white;
   padding-bottom: 2em;
-  opacity: 0.75;
-  border-radius: 250px;
+}
+.form-control {
+  width: 50%;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  background-position: 10px 10px;
+  padding: 1px 20px 12px 40px;
+  transition: width 0.7s ease-in-out;
+  margin: 20px;
+  margin-left: 7.5em;
+}
+
+.btn {
+  margin-left: 15em;
+  margin-top: 1em;
+}
+
+.form-control:focus {
+  width: 100%;
+}
+
+input {
+  text-transform: uppercase;
+  font-family: "Source Sans Pro", Helvetica, sans-serif;
+  text-align: left;
 }
 </style>
 

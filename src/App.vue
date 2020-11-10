@@ -2,16 +2,17 @@
   <div id="app">
     	<!-- Header -->
 					<header id="header">
-						<a href="index.html" class="logo">Song_writr</a>
+						<a href="/" class="logo">Song_writr 🎵</a>
 					</header>
 
 				<!-- Nav -->
 					<nav id="nav">
 						<ul class="links">
-							<li class="active"><a href="/">Home</a></li>
-							<li><a href="/mysongs">My Music</a></li>
-							<li><a href="/login">Login</a></li>
-							<li><a href="/signup">Signup</a></li>
+							<li class="active"><a href="/">Home 🏠</a></li>
+							<li><a href="/mysongs">My Music 🎵</a></li>
+							<li><a href="/login">Login 🔓</a></li>
+							<li><a href="/signup">Signup ✍️</a></li>
+							<li><a href="/logout">Logout 🔒</a></li>
 						</ul>
 						<ul class="icons">
 							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
@@ -27,4 +28,11 @@
 </template>
 
 <style>
+#nav:hover {
+  cursor: pointer;
+}
+
+li:hover {
+  color: #18bfef;
+}
 </style>

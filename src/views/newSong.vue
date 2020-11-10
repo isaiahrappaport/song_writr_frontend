@@ -1,7 +1,7 @@
 <template>
   <div class="new-song">
     <form v-on:submit.prevent="submit()">
-      <h1>New Song</h1>
+      <h1>New Song 🎵</h1>
       <ul>
         <li class="text-danger" v-for="error in errors">{{ error }}</li>
       </ul>
@@ -32,28 +32,35 @@
          Type genius lyrics here.
         </textarea>
       </div>
+      <br>
       <input type="submit" class="btn btn-primary" value="Submit">
     </form>
   </div>
 </template>
 
 <style scoped>
+h1 {
+  margin-top: 1em;
+}
 .new-song {
-  background-color: aliceblue;
-  border: solid black 2px;
-  border-radius: 20px;
+  background-color: rgb(255, 255, 255);
+  /* border: solid black 2px; */
+  /* border-radius: 20px; */
   text-decoration: none;
   color: black;
   font-size: 16px;
   padding: 6px;
+  text-align: center;
+  margin-left: 4.5em;
+  margin-right: 4.5em;
 }
 
-.new-song:hover {
+/* .new-song:hover {
   font-size: 18px;
   background-color: rgb(85, 83, 83);
   color: rgb(252, 191, 78);
   border: solid white 2px;
-}
+} */
 
 .btn {
   border-radius: 20px;

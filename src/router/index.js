@@ -6,6 +6,8 @@ import Login from "../views/Login.vue";
 import Logout from "../views/Logout.vue";
 import mySongs from "../views/userPage.vue";
 import newSong from "../views/newSong.vue";
+import rhymingGenerator from "../views/rhymingGenerator.vue";
+import Record from "../views/Record.vue";
 
 Vue.use(VueRouter);
 
@@ -21,6 +23,8 @@ const routes = [
   { path: "/logout", name: "logout", component: Logout },
   { path: "/mysongs", name: "mySongs", component: mySongs },
   { path: "/newsong", name: "newSong", component: newSong },
+  { path: "/rhyming", name: "rhymingGenerator", component: rhymingGenerator },
+  { path: "/record", name: "record", component: Record },
 ];
 
 const router = new VueRouter({

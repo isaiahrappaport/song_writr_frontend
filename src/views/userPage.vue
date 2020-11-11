@@ -29,7 +29,7 @@
           <source v-bind:src="currentSong.audio_file">
           Your browser does not support the audio element.
         </audio>
-        <p> {{ currentSong.lyrics }}</p>
+        <p> Lyrics: {{ currentSong.lyrics }}</p>
         <p> {{ currentSong.suggestions }}</p>
         <button class="close">Close</button>
       </form>

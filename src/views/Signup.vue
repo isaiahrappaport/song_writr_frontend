@@ -40,8 +40,8 @@ h1 {
 }
 
 .signup {
-  margin-left: 4.9em;
-  margin-right: 4.9em;
+  max-width: 72rem;
+  margin: 0 auto;
   padding-left: 20em;
   padding-right: 20em;
   background-color: white;

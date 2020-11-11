@@ -35,13 +35,16 @@
       <form method="dialog">
         <h2>Song info:</h2>
         <h3>{{ currentSong.title }}</h3>
-        <p>{{currentSong.audio}}</p>
         <audio controls ref="audio">
   <source v-bind:src="currentSong.audio" type="audio/ogg">
   <source v-bind:src="currentSong.audio" type="audio/mpeg">
 Your browser does not support the audio element.
 </audio>
-  <p> {{ currentSong.lyrics }}</p>
+  <p> Lyrics: {{ currentSong.lyrics }}</p>
+  <div class="form-group">
+    <label>Suggestions:</label> 
+    <input type="text" class="form-control">
+  </div>
   <p> Suggestions: {{ currentSong.suggestions }}</p>
   <button class="close">Close</button>
   </form>
@@ -72,6 +75,10 @@ Your browser does not support the audio element.
   left: 50%;
   transform: translate(-50%, -50%);
   margin-right: 250px;
+}
+
+audio {
+  outline: none;
 }
 </style>
 

@@ -13,7 +13,6 @@
       <div class="form-group">
         <label for="genre">Genre:</label>
         <select id="genre" name="genre" v-model="genre">
-        <option value="pick">pick a genre</option>
         <option value="rock">Rock</option>
         <option value="pop">Pop</option>
         <option value="folk">Folk</option>
@@ -28,8 +27,7 @@
       <br>
       <div class="form-group">
         <label>Lyrics:</label>
-        <textarea name="lyrics" rows="10" cols="30" v-model="lyrics">
-         Type genius lyrics here.
+        <textarea name="lyrics" rows="10" cols="30" v-model="lyrics" placeholder="Type genius lyrics here.">
         </textarea>
       </div>
       <br>
@@ -40,34 +38,51 @@
 
 <style scoped>
 h1 {
-  margin-top: 1em;
-}
-.new-song {
-  background-color: rgb(255, 255, 255);
-  /* border: solid black 2px; */
-  /* border-radius: 20px; */
-  text-decoration: none;
-  color: black;
-  font-size: 16px;
-  padding: 6px;
   text-align: center;
-  margin-left: 4.5em;
-  margin-right: 4.5em;
 }
 
-/* .new-song:hover {
-  font-size: 18px;
-  background-color: rgb(85, 83, 83);
-  color: rgb(252, 191, 78);
-  border: solid white 2px;
-} */
+.form-group {
+  text-align: center;
+}
+
+.new-song {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding-left: 20em;
+  padding-right: 20em;
+  background-color: white;
+  padding-bottom: 2em;
+}
+.form-control {
+  width: 50%;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  background-position: 10px 10px;
+  padding: 1px 20px 12px 40px;
+  transition: width 0.7s ease-in-out;
+  margin: 20px;
+  margin-left: 7.5em;
+}
 
 .btn {
-  border-radius: 20px;
+  margin: 0 auto;
+  margin-left: 40%;
+  margin-right: 50%;
 }
 
-.btn:hover {
-  cursor: pointer;
+.form-control:focus {
+  width: 100%;
+}
+
+input,
+textarea,
+select {
+  text-transform: uppercase;
+  font-family: "Source Sans Pro", Helvetica, sans-serif;
+  text-align: left;
 }
 </style>
 

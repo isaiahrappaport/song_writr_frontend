@@ -8,19 +8,18 @@
 				<!-- Nav -->
 					<nav id="nav">
 						<ul class="links">
-							<li class="active"><a href="/">Home 🏠</a></li>
-							<li><a href="/mysongs">My Music 🎵</a></li>
-							<li><a href="/login">Login 🔓</a></li>
-							<li><a href="/signup">Signup ✍️</a></li>
-							<li><a href="/logout">Logout 🔒</a></li>
-						</ul>
-						<ul class="icons">
-							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-							<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+							<router-link to="/" tag="li" exact-active-class="active"><a>Home 🏠</a></router-link>
+							<router-link to="/mysongs" tag="li" active-class="active"><a>My Music 🎵</a></router-link>
+							<router-link to="/login" tag="li" active-class="active"><a>Login 🔐</a></router-link>
+							<router-link to="/signup" tag="li" active-class="active"><a>Signup ✍️</a></router-link>
+							<router-link to="/logout" tag="li" active-class="active"><a>Logout 🔒</a></router-link>
+							<router-link to="/rhyming" tag="li" active-class="active"><a>Rhyming Generator 📝</a></router-link>
+							<router-link to="/record" tag="li" active-class="active"><a>Record 🎙</a></router-link>
 						</ul>
 					</nav>
+							
+			
+					
 
     <router-view/>
     

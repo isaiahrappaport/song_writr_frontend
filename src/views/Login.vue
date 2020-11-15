@@ -62,6 +62,7 @@ input {
   text-transform: uppercase;
   font-family: "Source Sans Pro", Helvetica, sans-serif;
   text-align: left;
+  box-shadow: 8px 4px #beb9b9;
 }
 </style>
 

@@ -1,45 +1,45 @@
 <template>
-
   <div class="home">
     <!-- indexSongs -->
     <div id="main">
-    
-    <h1>Welcome, {{currentUser.username}}!</h1>
-    <a class="new-song" href="/newsong">New Song 🎵</a>
-    <h2>All Songs</h2>
-      <!-- show all user songs -->
+      <h1>Welcome, {{ currentUser.username }}!</h1>
+      <a class="new-song" href="/newsong">New Song 🎵</a>
+      <h2>All Songs</h2>
       <section class="posts">
-    <article v-for="song in currentUser.songs" class="all-songs">
-      <h2>{{song.title}}</h2>
-      <h3>By: {{song.user_id}}</h3>
-      <h5>Created at:{{song.created_at}}</h5>
-      <button v-on:click="showSong(song)">Listen</button>
-    </article>
+        <article v-for="song in currentUser.songs" class="all-songs">
+          <img class="profile-picture" v-bind:src="currentUser.profile_picture" v-bind:alt="currentUser.username" />
+          <h2>{{ song.title }}</h2>
+          <h3>By: {{ currentUser.username }}</h3>
+          <h5>Created at:{{ song.created_at }}</h5>
+          <button v-on:click="showSong(song)">Listen</button>
+        </article>
       </section>
-    
 
-<!-- showSong -->
-      
+      <!-- showSong -->
+
       <dialog id="song-details">
-      <form method="dialog">
-        <h2>Song info:</h2>
-        <h3>{{ currentSong.title }}</h3>
-        <!-- PLAYING AUDIO NOT WORKING -->
-         <audio controls ref="audio">
-          <source v-bind:src="currentSong.audio_file">
-          Your browser does not support the audio element.
-        </audio>
-        <p> Lyrics: {{ currentSong.lyrics }}</p>
-        <p> {{ currentSong.suggestions }}</p>
-        <button class="close">Close</button>
-      </form>
-    </dialog>
-
-  </div>
+        <form method="dialog">
+          <h2>Song info:</h2>
+          <h3>{{ currentSong.title }}</h3>
+          <audio controls ref="audio">
+            <source v-bind:src="currentSong.audio_file" />
+            Your browser does not support the audio element.
+          </audio>
+          <p>Lyrics: {{ currentSong.lyrics }}</p>
+          <p>{{ currentSong.suggestions }}</p>
+          <button class="close">Close</button>
+        </form>
+      </dialog>
+    </div>
   </div>
 </template>
 
 <style scoped>
+.profile-picture {
+  width: 30%;
+  margin: 0 auto;
+}
+
 h1 {
   font-size: 20px;
   text-align: right;
@@ -78,26 +78,26 @@ h2 {
 import axios from "axios";
 
 export default {
-  data: function () {
+  data: function() {
     return {
       songs: [],
       currentSong: {},
       currentUser: {},
     };
   },
-  created: function () {
+  created: function() {
     this.userSongs();
   },
   methods: {
     // currentUser
-    userSongs: function () {
-      axios.get("/api/users/current").then((response) => {
+    userSongs: function() {
+      axios.get("/api/users/current").then(response => {
         console.log("current user:", response.data);
         this.currentUser = response.data;
       });
     },
     // showSong
-    showSong: function (song) {
+    showSong: function(song) {
       console.log("Show song:", song);
       this.currentSong = song;
       document.querySelector("#song-details").showModal();

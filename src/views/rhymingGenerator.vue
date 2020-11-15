@@ -1,19 +1,16 @@
-
 <template>
-<div class="rhyming">
-  <h1>Rhyming Generator</h1>
-  <div class="form-group">
-  <form action="javascript:RhymeBrainSubmit()">
-    <input type=text id="RhymeBrainInput" class="form-control" placeholder="type a word you need to rhyme with">
-    <input type=submit value="Rhyme" class="btn">
-</form>
-</div>
-</div>
-</template>
+  <div class="rhyming">
+    <h1 class="title">Rhyming Generator</h1>
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="type a word you need to rhyme with..." v-model="word" />
+      <button v-on:click="indexRhymes()" class="btn btn-primary">Submit</button>
+    </div>
 
-<script type="text/javascript">
-var RhymeBrainMaxResults = 50;
-</script>
+    <div class="rhymes" v-for="word in words">
+      <small class="individual-rhymes">{{ word.word }}</small>
+    </div>
+  </div>
+</template>
 
 <style scoped>
 h1 {
@@ -32,6 +29,7 @@ h1 {
   background-color: white;
   padding-bottom: 2em;
 }
+
 .form-control {
   width: 50%;
   box-sizing: border-box;
@@ -46,11 +44,13 @@ h1 {
   margin-left: 7.5em;
 }
 
-.btn {
+.rhymes {
   margin: 0 auto;
+  text-align: center;
+  margin-top: 2em;
 }
 
-.form-control:focus {
+.form-control:hover {
   width: 100%;
 }
 
@@ -58,5 +58,27 @@ input {
   text-transform: uppercase;
   font-family: "Source Sans Pro", Helvetica, sans-serif;
   text-align: left;
+  box-shadow: 8px 4px #beb9b9;
 }
 </style>
+
+<script>
+import axios from "axios";
+export default {
+  data: function () {
+    return {
+      word: "",
+      words: [],
+    };
+  },
+  created: function () {},
+  methods: {
+    indexRhymes: function () {
+      axios.get("/api/rhymes/" + this.word).then((response) => {
+        console.log("Rhymes:", response.data);
+        this.words = response.data;
+      });
+    },
+  },
+};
+</script>

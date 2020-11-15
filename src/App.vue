@@ -1,11 +1,8 @@
 <template>
   <div id="app">
-    	<!-- Header -->
-					<header id="header">
-						<a href="/" class="logo">Song_writr 🎵</a>
-					</header>
-
-				<!-- Nav -->
+		<header id="header">
+			<a href="/" class="logo">Song_writr 🎵</a>
+		</header>
 					<nav id="nav">
 						<ul class="links">
 							<router-link to="/" tag="li" exact-active-class="active"><a>Home 🏠</a></router-link>
@@ -17,6 +14,9 @@
 							<router-link to="/record" tag="li" active-class="active"><a>Record 🎙</a></router-link>
 						</ul>
 					</nav>
+    	<!-- Header -->
+
+				<!-- Nav -->
 							
 			
 					

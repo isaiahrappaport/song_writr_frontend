@@ -5,6 +5,10 @@
       <ul>
         <li class="text-danger" v-for="error in errors">{{ error }}</li>
       </ul>
+           <div class="form-group">
+        <label>Profile Picture:</label>
+        <input type="file" v-on:change="setFile($event)" ref="fileInput">
+      </div>
       <div class="form-group">
         <label>Name:</label> 
         <input type="text" class="form-control" v-model="name">
@@ -74,6 +78,7 @@ input {
   text-transform: uppercase;
   font-family: "Source Sans Pro", Helvetica, sans-serif;
   text-align: left;
+  box-shadow: 8px 4px #beb9b9;
 }
 </style>
 
@@ -83,6 +88,7 @@ import axios from "axios";
 export default {
   data: function () {
     return {
+      profile_picture: "",
       name: "",
       username: "",
       email: "",
@@ -92,17 +98,28 @@ export default {
     };
   },
   methods: {
+    setFile: function (event) {
+      if (event.target.files.length > 0) {
+        this.profile_picture = event.target.files[0];
+      }
+    },
     submit: function () {
-      var params = {
-        name: this.name,
-        username: this.username,
-        email: this.email,
-        password: this.password,
-        password_confirmation: this.passwordConfirmation,
-      };
+      var formData = new FormData();
+      formData.append("name", this.name);
+      formData.append("profile_picture", this.profile_picture);
+      formData.append("username", this.username);
+      formData.append("email", this.email);
+      formData.append("password", this.password);
+      formData.append("password_confirmation", this.passwordConfirmation);
       axios
-        .post("/api/users", params)
+        .post("/api/users", formData)
         .then((response) => {
+          this.name = "";
+          this.username = "";
+          this.email = "";
+          this.password = "";
+          this.passwordConfirmation = "";
+          this.$refs.fileInput.value = "";
           this.$router.push("/login");
         })
         .catch((error) => {

@@ -1,16 +1,16 @@
 <template>
   <div class="home">
+    
     <!-- Main -->
     <div id="main">
       <!-- Featured Post -->
       <article class="post featured">
         <header class="major">
           <h2>
-            <a href="#">
-              Where great songwriters
+              <span>Where great songwriters</span>
               <br />
-              write songs
-            </a>
+              <span>write great songs</span> 
+            
           </h2>
           <p>Upload audio, write lyrics, make music.</p>
         </header>
@@ -26,6 +26,8 @@
       </article>
 
       <!-- all songs -->
+      <h2 class="all-songs">All Songs:</h2>
+      <br>
       <section class="posts">
         <article v-for="song in songs">
           <img class="profile-picture" v-bind:src="song.profile_picture" v-bind:alt="song.username" />
@@ -45,9 +47,9 @@
             <source v-bind:src="currentSong.audio" type="audio/mpeg" />
             Your browser does not support the audio element.
           </audio>
-          <p>Lyrics: {{ currentSong.lyrics }}</p>
-          <h4>Suggestions ({{currentSong.suggestions.length}}): </h4>
-          <div v-for="suggestion in currentSong.suggestions">
+          <p> <span class="lyrics">Lyrics:</span> <span> {{ currentSong.lyrics }}</span> </p>
+          <h4>Suggestions ({{currentSong.suggestions.length}}): </h4> 
+           <div v-for="suggestion in currentSong.suggestions"> 
             <span class="username">{{suggestion.username}}:</span> {{suggestion.text}}
           </div>
           <br>
@@ -55,10 +57,10 @@
           <form v-on:submit.prevent="submit()">
             <!-- ask if v-on:submit or v-on:click -->
             <!-- fix addComments function -->
-            <input type="text" class="form-control" placeholder="Make a suggestion...">
+            <input type="text" class="form-control" placeholder="Make a suggestion..." v-model="suggestionText">
             <input type="submit" class="btn btn-primary" value="Submit">
           </form>
-          </div>
+          </div> 
             <br>
           <button class="close">Close</button>
         </form>
@@ -68,6 +70,19 @@
 </template>
 
 <style>
+.lyrics {
+  font-weight: bold;
+}
+
+.all-songs {
+  margin: 0 auto;
+  text-align: center;
+}
+
+h2 {
+  white-space: nowrap;
+}
+
 .username {
   font-weight: bold;
 }
@@ -109,6 +124,7 @@ export default {
   data: function () {
     return {
       songs: [],
+      suggestionText: "",
       currentSong: {
         suggestions: [
           {
@@ -153,13 +169,18 @@ export default {
     // createSuggestion
     submit: function () {
       var params = {
-        text: this.text,
+        text: this.suggestionText,
         username: this.currentSong.username,
         song_id: this.currentSong.id,
       };
       axios.post("/api/suggestions", params).then((response) => {
         console.log("Suggestion Submitted!", response.data);
+        this.currentSong.suggestions.push(response.data);
+        this.suggestionText = "";
       });
+    },
+    isLoggedIn: function () {
+      return localStorage.getItem("jwt");
     },
   },
 };

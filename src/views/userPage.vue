@@ -2,15 +2,18 @@
   <div class="home">
     <!-- indexSongs -->
     <div id="main">
+      <br>
       <h1>Welcome, {{ currentUser.username }}!</h1>
       <a class="new-song" href="/newsong">New Song 🎵</a>
-      <h2>All Songs</h2>
+      <img class="top-profile-picture" v-bind:src="currentUser.profile_picture" v-bind:alt="currentUser.username" />
+      <h2>My Songs</h2>
       <section class="posts">
         <article v-for="song in currentUser.songs" class="all-songs">
           <img class="profile-picture" v-bind:src="currentUser.profile_picture" v-bind:alt="currentUser.username" />
           <h2>{{ song.title }}</h2>
           <h3>By: {{ currentUser.username }}</h3>
-          <h5>Created at:{{ song.created_at }}</h5>
+          <!-- <small>{{ song.genre }}</small> -->
+          <!-- <h5>Created at:{{ song.created_at }}</h5> -->
           <button v-on:click="showSong(song)">Listen</button>
         </article>
       </section>
@@ -26,7 +29,10 @@
             Your browser does not support the audio element.
           </audio>
           <p>Lyrics: {{ currentSong.lyrics }}</p>
-          <p>{{ currentSong.suggestions }}</p>
+         <h4>Suggestions ({{currentSong.suggestions.length}}): </h4> 
+           <div v-for="suggestion in currentSong.suggestions"> 
+            <span class="username">{{suggestion.username}}:</span> {{suggestion.text}}
+          </div>
           <button class="close">Close</button>
         </form>
       </dialog>
@@ -35,8 +41,15 @@
 </template>
 
 <style scoped>
+.top-profile-picture {
+  width: 15%;
+  position: relative;
+  margin: 0 auto;
+  margin-left: 31em;
+}
+
 .profile-picture {
-  width: 30%;
+  width: 10%;
   margin: 0 auto;
 }
 
@@ -50,7 +63,8 @@ h2 {
 }
 
 .new-song {
-  margin-left: 40em;
+  margin-left: 76em;
+  /* margin-right: 140em; */
   margin-bottom: 3em;
   border: solid black 2px;
   border-radius: 20px;
@@ -78,26 +92,32 @@ h2 {
 import axios from "axios";
 
 export default {
-  data: function() {
+  data: function () {
     return {
       songs: [],
-      currentSong: {},
+      currentSong: {
+        suggestions: [
+          {
+            text: "",
+          },
+        ],
+      },
       currentUser: {},
     };
   },
-  created: function() {
+  created: function () {
     this.userSongs();
   },
   methods: {
     // currentUser
-    userSongs: function() {
-      axios.get("/api/users/current").then(response => {
+    userSongs: function () {
+      axios.get("/api/users/current").then((response) => {
         console.log("current user:", response.data);
         this.currentUser = response.data;
       });
     },
     // showSong
-    showSong: function(song) {
+    showSong: function (song) {
       console.log("Show song:", song);
       this.currentSong = song;
       document.querySelector("#song-details").showModal();

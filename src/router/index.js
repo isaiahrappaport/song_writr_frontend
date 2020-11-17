@@ -8,6 +8,7 @@ import mySongs from "../views/userPage.vue";
 import newSong from "../views/newSong.vue";
 import rhymingGenerator from "../views/rhymingGenerator.vue";
 import Record from "../views/Record.vue";
+import Synth from "../views/Synth.vue";
 
 Vue.use(VueRouter);
 
@@ -25,6 +26,7 @@ const routes = [
   { path: "/newsong", name: "newSong", component: newSong },
   { path: "/rhyming", name: "rhymingGenerator", component: rhymingGenerator },
   { path: "/record", name: "record", component: Record },
+  { path: "/synth", name: "synth", component: Synth },
 ];
 
 const router = new VueRouter({

@@ -49,7 +49,6 @@ h2 {
   width: 660px;
   height: 110px;
   white-space: nowrap;
-  /* margin: 10px; */
 }
 
 .keyboard {

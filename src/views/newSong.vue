@@ -1,6 +1,7 @@
 <template>
   <div class="new-song">
     <form v-on:submit.prevent="submit()">
+      <br>
       <h1>New Song 🎵</h1>
       <ul>
         <li class="text-danger" v-for="error in errors">{{ error }}</li>

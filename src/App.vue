@@ -38,12 +38,9 @@
   margin-left: 52em;
 }
 
-#nav:hover {
-  cursor: pointer;
-}
-
 li:hover {
   color: #18bfef;
+  cursor: pointer;
 }
 </style>
 

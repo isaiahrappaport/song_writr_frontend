@@ -13,7 +13,7 @@
           <button class="stop">Stop</button>
         </div>
       </section>
-
+      <br>
       <section class="sound-clips">
 
 
@@ -50,6 +50,9 @@ body {
 }
 
 .record {
+  width: 50px !important;
+  height: 50px;
+  border-radius: 50%;
   color: white !important;
   background: rgb(99, 10, 28);
   background: linear-gradient(90deg, rgba(99, 10, 28, 1) 0%, rgba(163, 12, 42, 1) 51%, rgba(255, 0, 54, 1) 100%);

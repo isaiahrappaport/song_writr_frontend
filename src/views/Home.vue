@@ -7,17 +7,15 @@
       <article class="post featured">
         <header class="major">
           <h2>
-              <span>Where great songwriters</span>
-              <br />
-              <span>write great songs</span> 
-            
+              Where great songwriters
           </h2>
+  
+          <h2 class="opening-title">
+              write great songs </h2>
           <p>Upload audio, write lyrics, make music.</p>
         </header>
         <h2 class="tip">
-          Today,
-          <br />
-          close your eyes while you sing.
+          Music is the <br/>expression <br/> of the soul.
         </h2>
         <a href="/newsong" class="image main"><img src="images/home.png" alt="" /></a>
         <ul class="actions special">
@@ -39,9 +37,8 @@
       <!-- show song -->
       <dialog id="song-details">
         <form method="dialog">
-          <h2>Song info:</h2>
-          <img class="profile-picture" v-bind:src="currentSong.profile_picture" v-bind:alt="currentSong.username" />
-          <h3>{{ currentSong.title }}</h3>
+          <h2>{{ currentSong.title }}</h2>
+          <img class="profile-picture-show" v-bind:src="currentSong.profile_picture" v-bind:alt="currentSong.username" />
           <audio controls ref="audio">
             <source v-bind:src="currentSong.audio" type="audio/ogg" />
             <source v-bind:src="currentSong.audio" type="audio/mpeg" />
@@ -55,9 +52,8 @@
           <br>
           <div class="form-group">
           <form v-on:submit.prevent="submit()">
-            <!-- ask if v-on:submit or v-on:click -->
-            <!-- fix addComments function -->
             <input type="text" class="form-control" placeholder="Make a suggestion..." v-model="suggestionText">
+          
             <input type="submit" class="btn btn-primary" value="Submit">
           </form>
           </div> 
@@ -70,6 +66,36 @@
 </template>
 
 <style>
+.opening-title {
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: 0.15em solid #18bfef; /* The typwriter cursor */
+  white-space: nowrap; /*Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: 0.15em; /* Adjust as needed */
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #18bfef;
+  }
+}
+
 .lyrics {
   font-weight: bold;
 }
@@ -90,11 +116,25 @@ h2 {
 .profile-picture {
   width: 30%;
   margin: 0 auto;
+  border-radius: 50%;
+  max-height: 140px;
+  max-width: 30%;
+}
+
+.profile-picture-show {
+  position: relative;
+  width: 10%;
+  margin: 0 auto;
+  margin-bottom: 100px;
+  margin-top: -70px;
+  border-radius: 50%;
+  max-height: 65px;
+  max-width: 10%;
 }
 
 .tip {
   position: absolute;
-  top: 13%;
+  top: 65vh;
   left: 50%;
   transform: translate(-50%, -50%);
   margin-right: 250px;
@@ -108,12 +148,20 @@ button {
   outline: none;
 }
 
+.btn-primary {
+  margin-left: 45em;
+  margin-top: 10px;
+}
+
 .close {
-  margin-left: 9em;
+  margin: 0 auto;
+  margin-left: 43%;
+  margin-right: 50%;
 }
 
 audio {
   outline: none;
+  width: 80%;
 }
 </style>
 

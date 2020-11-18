@@ -3,10 +3,11 @@
     <!-- indexSongs -->
     <div id="main">
       <br>
-      <h1>Welcome, {{ currentUser.username }}!</h1>
+      <h1 class="welcome">Welcome, {{ currentUser.username }}!</h1>
       <a class="new-song" href="/newsong">New Song 🎵</a>
       <img class="top-profile-picture" v-bind:src="currentUser.profile_picture" v-bind:alt="currentUser.username" />
       <h2>My Songs</h2>
+      <hr>
       <section class="posts">
         <article v-for="song in currentUser.songs" class="all-songs">
           <img class="profile-picture" v-bind:src="currentUser.profile_picture" v-bind:alt="currentUser.username" />
@@ -22,13 +23,14 @@
 
       <dialog id="song-details">
         <form method="dialog">
-          <h2>Song info:</h2>
-          <h3>{{ currentSong.title }}</h3>
+          <h2>{{ currentSong.title }}</h2>
+          <img class="profile-picture-show" v-bind:src="currentSong.profile_picture" v-bind:alt="currentSong.username" />
           <audio controls ref="audio">
-            <source v-bind:src="currentSong.audio_file" />
+            <source v-bind:src="currentSong.audio" type="audio/ogg" />
+            <source v-bind:src="currentSong.audio" type="audio/mpeg" />
             Your browser does not support the audio element.
           </audio>
-          <p>Lyrics: {{ currentSong.lyrics }}</p>
+          <p> <span class="lyrics">Lyrics:</span> {{ currentSong.lyrics }}</p>
          <h4>Suggestions ({{currentSong.suggestions.length}}): </h4> 
            <div v-for="suggestion in currentSong.suggestions"> 
             <span class="username">{{suggestion.username}}:</span> {{suggestion.text}}
@@ -41,6 +43,19 @@
 </template>
 
 <style scoped>
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+.welcome {
+  margin-right: 20px;
+}
+
 .top-profile-picture {
   width: 15%;
   position: relative;
@@ -51,6 +66,17 @@
 .profile-picture {
   width: 10%;
   margin: 0 auto;
+}
+
+.profile-picture-show {
+  position: relative;
+  width: 10%;
+  margin: 0 auto;
+  margin-bottom: 100px;
+  margin-top: -70px;
+  border-radius: 50%;
+  max-height: 65px;
+  max-width: 10%;
 }
 
 h1 {
@@ -85,6 +111,21 @@ h2 {
 
 .new-song:hover {
   border: solid #18bfef 2px;
+}
+
+.close {
+  margin: 0 auto;
+  margin-left: 43%;
+  margin-right: 50%;
+}
+
+.lyrics {
+  font-weight: bold;
+}
+
+audio {
+  outline: none;
+  width: 80%;
 }
 </style>
 

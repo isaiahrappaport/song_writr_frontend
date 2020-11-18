@@ -2176,7 +2176,7 @@ button,
   -ms-transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
   transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
   border: 0;
-  border-radius: 20px;
+  border-radius: 30px;
   cursor: pointer;
   display: inline-block;
   font-family: "Source Sans Pro", Helvetica, sans-serif;
@@ -2190,6 +2190,7 @@ button,
   text-decoration: none;
   text-transform: uppercase;
   white-space: nowrap;
+  outline: none;
 }
 
 input[type="submit"].icon:before,
